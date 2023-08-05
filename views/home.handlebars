@@ -1,0 +1,18 @@
+{{#extend "layouts/main"}}
+  {{#content "main"}}
+    <h2>Welcome to the Tech Blog!</h2>
+    {{#if blogPosts.length}}
+      <ul>
+        {{#each blogPosts}}
+          <li>
+            <h3>{{title}}</h3>
+            <p>By {{user.username}}</p>
+            <p>Date: {{createdAt}}</p>
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <p>No blog posts available.</p>
+    {{/if}}
+  {{/content}}
+{{/extend}}
