@@ -15,7 +15,8 @@ Create the database \
 
 Open the project folder at the root and run the start script \
 `npm run start`
-### Packages
+
+## Packages
 - Bycrypt
 - Bootstrap
 - Dotenv
