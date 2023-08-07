@@ -1,18 +1,84 @@
-{{#extend "layouts/main"}}
-  {{#content "main"}}
-    <h2>Welcome to the Tech Blog!</h2>
-    {{#if blogPosts.length}}
-      <ul>
-        {{#each blogPosts}}
-          <li>
-            <h3>{{title}}</h3>
-            <p>By {{user.username}}</p>
-            <p>Date: {{createdAt}}</p>
-          </li>
-        {{/each}}
-      </ul>
-    {{else}}
-      <p>No blog posts available.</p>
-    {{/if}}
-  {{/content}}
-{{/extend}}
+<link rel="stylesheet" href="/css/home.css">
+<h2>Welcome to the Tech Blog!</h2>
+{{#if blogPosts.length}}
+  <ul>
+    {{#each blogPosts}}
+      <li>
+        <h3>{{title}}</h3>
+        <p>By {{user.username}}</p>
+        <p>Date: {{createdAt}}</p>
+
+        <button class="toggleCommentButton" data-id="{{id}}">Show Comments</button>
+
+        <div class="commentSection">
+          <h4>Comments</h4>
+          <ul>
+            {{#each comments}}
+              <li>
+                <p>{{this.text}}</p>
+                <p>By {{this.user.username}} | Date: {{this.createdAt}}</p>
+              </li>
+            {{/each}}
+          </ul>
+
+          <h4>Add a Comment</h4>
+          <textarea id="commentContent_{{id}}" rows="4" cols="50" required></textarea>
+          <button class="commentSubmitButton" data-id="{{id}}" type="button">Submit Comment</button>
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No blog posts available.</p>
+{{/if}}
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const commentButtons = document.querySelectorAll(".toggleCommentButton");
+    console.log({{loggedInUserID}});
+
+    document.querySelectorAll(".comment-admin-buttons").forEach((commentButtons) => {
+
+    })
+
+    commentButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const postId = button.getAttribute("data-id");
+        const commentSection = button.nextElementSibling;
+        commentSection.classList.toggle("hidden");
+      });
+    });
+
+    const commentSubmitButtons = document.querySelectorAll(".commentSubmitButton");
+
+    commentSubmitButtons.forEach((button) => {
+      button.addEventListener("click", async () => {
+        const postId = button.getAttribute("data-id");
+        const commentContent = document.getElementById(`commentContent_${postId}`).value;
+
+        try {
+          const response = await fetch(`/comment/${postId}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              text: commentContent,
+            }),
+          });
+
+          if (response.ok) {
+            // Reload the page to see the new comment
+            location.reload();
+          } else {
+            console.error("Error creating comment");
+          }
+        } catch (error) {
+          console.error("Error creating comment:", error);
+        }
+      });
+    });
+  });
+</script>
+
+

@@ -14,10 +14,10 @@
         <li><a href="/">Home</a></li>
         {{#if loggedIn}}
           <li><a href="/dashboard">Dashboard</a></li>
-          <li><a href="/logout">Logout</a></li>
+          <li><a href="/user/logout">Logout</a></li>
         {{else}}
-          <li><a href="/signup">Sign Up</a></li>
-          <li><a href="/login">Login</a></li>
+          <li><a href="/user/signup">Sign Up</a></li>
+          <li><a href="/user/login">Login</a></li>
         {{/if}}
       </ul>
     </nav>
@@ -26,5 +26,9 @@
   <main>
     {{{body}}}
   </main>
+  
+  <footer>
+    <!-- Footer content... -->
+  </footer>
 </body>
 </html>

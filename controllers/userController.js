@@ -1,6 +1,12 @@
 const { User } = require("../models");
 
 const userController = {
+  renderSignupPage(req, res) {
+    res.render("signup");
+  },
+  renderLoginPage(req, res){
+    res.render("login");
+  },
   async signUp(req, res) {
     try {
       const newUser = await User.create({
