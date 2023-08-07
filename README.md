@@ -1,8 +1,10 @@
 # Tech Blog
 ---
 ## Description
-This is a simple tech blog that allows users to 
-signup / login, create posts and comment on posts.
+This is a simple tech blog that allows users to \
+signup/login, create posts and comment on posts.\
+\
+Created for the UofT Bootcamp Module 14.
 
 ## Running Locally
 Open your terminal and login to MySQL \
