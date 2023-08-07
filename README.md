@@ -15,3 +15,11 @@ Create the database \
 
 Open the project folder at the root and run the start script \
 `npm run start`
+### Packages
+- Bycrypt
+- Bootstrap
+- Dotenv
+- Express
+- Express Handlebars
+- MySQL2
+- Sequelize
