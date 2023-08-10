@@ -1,15 +1,34 @@
 bashCopy code
 # Use the official Node.js image as the base image
+
 FROM node:18
 
 # Set the working directory in the container
+
 WORKDIR /app
 
 # Copy the application files into the working directory
+
 COPY . /app
 
 # Install the application dependencies
+
 RUN npm install
 
 # Define the entry point for the container
+
 CMD ["npm", "start"]
+
+# Expose the port that the container will be listening on
+
+EXPOSE 3000
+
+```
+
+I added the following line at the end:
+
+```bash
+
+# Expose the port that the container will be listening on
+
+EXPOSE 3000
